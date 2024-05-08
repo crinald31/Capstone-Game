@@ -29,6 +29,9 @@ public class EnemyManager : MonoBehaviour
     public float maxTimeBetweenMovements = 3f;
     public float changeDirectionCooldown = 1.0f;
     private float lastDirectionChangeTime = 0.0f;
+    public GameObject healthPackPrefab;
+    public float healthPackDropChance;
+    public float healthPackOffset = 0.5f;
 
     private void Awake()
     {
@@ -140,6 +143,12 @@ public class EnemyManager : MonoBehaviour
             int randomEffect = Random.Range(0, deathEffect.Length);
             int rotation = Random.Range(0, 4);
             Instantiate(deathEffect[randomEffect], transform.position, Quaternion.Euler(0f, 0f, rotation * 90f));
+            float dropChance = Random.Range(0f, 100f);
+            if (dropChance < healthPackDropChance)
+            {
+                Vector3 healthPackPosition = transform.position + Vector3.up * healthPackOffset;
+                Instantiate(healthPackPrefab, transform.position, Quaternion.identity);
+            }
         }
     }
 
