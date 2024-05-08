@@ -18,11 +18,13 @@ public class HealthDrops : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Trigger entered");
         if (other.tag == "Player")
         {
-            PlayerHealth.instance.Heal(heal);
-            Destroy(gameObject);
+            if (PlayerHealth.instance.health < PlayerHealth.instance.maxHealth)
+            {
+                PlayerHealth.instance.Heal(heal);
+                Destroy(gameObject);
+            }
         }
     }
 }
