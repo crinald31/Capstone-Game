@@ -24,6 +24,7 @@ public class HealthDrops : MonoBehaviour
             {
                 PlayerHealth.instance.Heal(heal);
                 Destroy(gameObject);
+                AudioManager.instance.PlaySFX(7);
             }
         }
     }

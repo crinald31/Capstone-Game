@@ -53,6 +53,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (invincibileCounter <= 0)
         {
+            AudioManager.instance.PlaySFX(11);
             health -= damage;
             health = Mathf.Clamp(health, 0f, maxHealth);
 
@@ -64,6 +65,7 @@ public class PlayerHealth : MonoBehaviour
             {
                 Die();
                 AudioManager.instance.PlayGameOver();
+                AudioManager.instance.PlaySFX(8);
             }
 
             UpdateHeartsHUD();

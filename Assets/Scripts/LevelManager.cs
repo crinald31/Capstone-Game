@@ -7,9 +7,14 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
 
+    public GameObject player;
+    public Transform canvasParent;
+
     public float levelLoadWait = 4f;
     public string changeLevel;
     public bool paused;
+
+    public Transform point;
 
     private void Awake()
     {
@@ -18,6 +23,8 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+        PlayerManager.instance.transform.position = point.position;
+        PlayerManager.instance.canMove = true;
         Time.timeScale = 1f;
     }
 

@@ -6,6 +6,7 @@ public class CameraManager : MonoBehaviour
 {
     public static CameraManager instance;
     public Transform target;
+    public Camera mainCamera;
 
     public float speed;
 

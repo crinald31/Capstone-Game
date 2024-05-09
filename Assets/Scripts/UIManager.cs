@@ -29,6 +29,9 @@ public class UIManager : MonoBehaviour
     {
         fadeOut = true;
         fadeTo = false;
+
+        equippedGun.sprite = PlayerManager.instance.playerGuns[PlayerManager.instance.equippedGun].gunUI;
+        gunText.text = PlayerManager.instance.playerGuns[PlayerManager.instance.equippedGun].nameOfWeapon;
     }
 
     void Update()

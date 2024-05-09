@@ -21,6 +21,7 @@ public class ExitManager : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            AudioManager.instance.PlayVictory();
             StartCoroutine(LevelManager.instance.LevelEnd());
         }
     }

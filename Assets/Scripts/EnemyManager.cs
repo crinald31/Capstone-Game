@@ -31,7 +31,6 @@ public class EnemyManager : MonoBehaviour
     private float lastDirectionChangeTime = 0.0f;
     public GameObject healthPackPrefab;
     public float healthPackDropChance;
-    public float healthPackOffset = 0.5f;
 
     private void Awake()
     {
@@ -107,6 +106,7 @@ public class EnemyManager : MonoBehaviour
                 {
                     fireCounter = rateOfFire;
                     Instantiate(bullet, firePoint.position, firePoint.rotation);
+                    AudioManager.instance.PlaySFX(13);
                 }
             }
 
@@ -146,7 +146,6 @@ public class EnemyManager : MonoBehaviour
             float dropChance = Random.Range(0f, 100f);
             if (dropChance < healthPackDropChance)
             {
-                Vector3 healthPackPosition = transform.position + Vector3.up * healthPackOffset;
                 Instantiate(healthPackPrefab, transform.position, Quaternion.identity);
             }
         }

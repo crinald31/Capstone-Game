@@ -23,7 +23,6 @@ public class Breakables : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Trigger entered");
         if (other.tag == "Player")
         {
             if (PlayerManager.instance.rollCounter > 0)
@@ -40,8 +39,6 @@ public class Breakables : MonoBehaviour
 
     public void Smash()
     {
-        Debug.Log("Smash");
-
         Destroy(gameObject);
 
         AudioManager.instance.PlaySFX(0);

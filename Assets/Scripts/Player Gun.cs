@@ -33,6 +33,7 @@ public class PlayerGun : MonoBehaviour
                 {
                     Instantiate(bullet, shootPoint.position, shootPoint.rotation);
                     bulletCounter = shotInterval;
+                    AudioManager.instance.PlaySFX(12);
                 }
             }
         }

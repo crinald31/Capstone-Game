@@ -11,7 +11,6 @@ public class PlayerManager : MonoBehaviour
     public Transform gunTransform;
     public Rigidbody2D rb;
     private Vector2 playerInput;
-    private Camera mainCamera;
     public Animator animator;
     public List<PlayerGun> playerGuns = new List<PlayerGun>();
 
@@ -26,7 +25,7 @@ public class PlayerManager : MonoBehaviour
     public float rollInvincibility = 0.5f;
     public float rollCounter;
     private float rollCooldownCounter;
-    private int equippedGun;
+    public int equippedGun;
 
     [HideInInspector]
     public bool canMove = true;
@@ -34,12 +33,11 @@ public class PlayerManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        //DontDestroyOnLoad(gameObject);
     }
 
     void Start()
     {
-        mainCamera = Camera.main;
+        
         playerSpeed = 5f;
         activeSpeed = playerSpeed;
 
@@ -97,6 +95,7 @@ public class PlayerManager : MonoBehaviour
                     rollCounter = rollLength;
                     animator.SetTrigger("roll");
                     PlayerHealth.instance.Invincible(rollInvincibility);
+                    AudioManager.instance.PlaySFX(8);
                 }
             }
             if (rollCounter > 0)
@@ -126,7 +125,7 @@ public class PlayerManager : MonoBehaviour
         if (canMove && !LevelManager.instance.paused)
         {
             Vector3 mousePos = Input.mousePosition;
-            Vector3 screenPoint = mainCamera.WorldToScreenPoint(playerTransform.position);
+            Vector3 screenPoint = CameraManager.instance.mainCamera.WorldToScreenPoint(playerTransform.position);
 
             if (mousePos.x < screenPoint.x)
             {
